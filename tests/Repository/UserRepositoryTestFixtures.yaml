@@ -1,0 +1,13 @@
+App\Entity\User:
+    user{1..10}:
+        email: user<current()>\@domain.fr
+        password: "0000"
+        username: user<current()>
+
+#App\Entity\Task:
+#    task{1..10}:
+#        createdAt:
+#        title:
+#        content:
+#        isDone:
+#        author: user

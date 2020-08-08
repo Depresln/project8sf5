@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block header_img %}<img class="slide-image" src="{{ asset('img/todolist_content.jpg') }}" alt="todo list">{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+        <div class="row">
+            <a href="{{ path('task_create') }}" class="btn btn-info pull-right">Créer une tâche</a>
+        </div>
+    {% endif %}
+    <br />
+    <div class="row">
+        {% set container = '0' %}
+        {% for task in tasks %}
+            {% if task.isDone %}
+                {% set container = '1' %}
+                <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h4 class="pull-right">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </h4>
+                            <h4><a href="{{ path('task_edit', {'id' : task.id }) }}">{{ task.title }}</a></h4>
+                            <p>{{ task.content }}</p>
+                            <p class="pull-right">from {{ task.author.username }}</p>
+                        </div>
+                        <div>
+                            {% if app.user %}
+                                <form action="{{ path('task_toggle', {'id' : task.id }) }}">
+                                    <button class="btn btn-success btn-sm pull-right">
+                                        Marquer non terminée
+                                    </button>
+                                </form>
+                            {% endif %}
+                            {% if app.user %}
+                                {% if app.user == task.author or app.user.role == ['ROLE_ADMIN'] %}
+                                    <form action="{{ path('task_delete', {'id' : task.id }) }}">
+                                        <button class="btn btn-danger btn-sm pull-right">Supprimer</button>
+                                    </form>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        {% if container != '1' %}
+            <div class="alert alert-warning" role="alert">
+                Il n'y a aucune tâche terminée. <a href="{{ path('task_create') }}" class="btn btn-warning pull-right">Créer une tâche</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

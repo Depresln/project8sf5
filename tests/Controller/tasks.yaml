@@ -1,0 +1,20 @@
+App\Entity\Task:
+    task_todo:
+        title: "Task to do"
+        createdAt: "<date_create()>"
+        content: "Content of the task to do"
+        author: "@author"
+        isDone: 0
+    task_done:
+        title: "Task done"
+        createdAt: "<date_create()>"
+        content: "Content of the task done"
+        author: "@author"
+        isDone: 1
+
+App\Entity\User:
+    author:
+        username: "johndoe"
+        role: "[ROLE_USER]"
+        password: "\\$2y\\$10\\$XPXDOrF2gObGPf.ESQrxBuPNzNKIlaPeR0yvnEKX5cb32Sgqx.MqK"
+        email: "johndoe@domain.com"

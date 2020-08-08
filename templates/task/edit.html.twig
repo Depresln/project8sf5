@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if app.user %}
+        <div class="row">
+            {{ form_start(form, {'action' : path('task_edit', { 'id' : task.id })}) }}
+                {{ form_widget(form) }}
+
+                <button type="submit" class="btn btn-success pull-right">Modifier</button>
+            {{ form_end(form) }}
+        </div>
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            Vous n'avez pas les droits nécessaires à la visualisation de cette page. Merci de vous authentifier.
+        </div>
+    {% endif %}
+{% endblock %}
