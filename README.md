@@ -4,7 +4,11 @@
 
 1. Get the project by downloading it using the button **Clone or download**
 
-2. Open it with your favorite editor and open your local server. Use the symfony command:
+2. Open it with your favorite editor and execute the migration to get the fixtures and database running using:
+
+		$php bin/console d:m:m
+
+3. Open your local server using the symfony commands:
 
 		$symfony server:start
 		
@@ -16,7 +20,7 @@ then
 
 		$symfony open:local
 		
-3. You are now on your local version of the app. You can test it and log using some credentials as:
+4. You are now on your local version of the app. You can test it and log using some credentials as:
 
 **ADMIN:**
 
